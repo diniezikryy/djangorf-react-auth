@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <div>
       <Layout title="Auth Site | Home" content="Home page">
-        <div>Home</div>
+        <h1>Home</h1>
       </Layout>
     </div>
   );
