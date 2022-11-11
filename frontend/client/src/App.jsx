@@ -1,14 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "store";
+import { useDispatch } from "react-redux";
 
 import HomePage from "containers/HomePage";
 import DashboardPage from "containers/DashboardPage";
 import LoginPage from "containers/LoginPage";
 import RegisterPage from "containers/RegisterPage";
+import { useEffect } from "react";
+import { checkAuth } from "features/user";
 
-const App = () => (
-  <Provider store={store}>
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, []);
+
+  return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -17,7 +24,7 @@ const App = () => (
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Router>
-  </Provider>
-);
+  );
+};
 
 export default App;
